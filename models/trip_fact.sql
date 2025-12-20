@@ -11,9 +11,9 @@ with trips as
         , timestampdiff(
             second, to_timestamp(started_at), to_timestamp(ended_at)
         ) as trip_duration_seconds
-    from {{ source('DEMO', 'BIKE') }}
-    where ride_id != 'ride_id'
-    limit 10
+    from {{ ref('stg_bike') }}
+    where ride_id != 'bikeid' and ride_id != '"bikeid"'
+
 
 )
 
